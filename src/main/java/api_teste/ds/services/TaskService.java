@@ -55,7 +55,7 @@ public class TaskService {
 
 
         //Executa a busca customizada no repositorio filtrando pelo id do usuario
-        List<Task> tasks = this.taskRepository.findByUserId(UserId);
+        List<Task> tasks = this.taskRepository.findByUser_Id(UserId);
 
         //Retorna a lista de tarefas
         return tasks;
@@ -65,7 +65,7 @@ public class TaskService {
 
         public Task create(Task obj){
         //Valida se o usuario informa no objeto realmente existe no banco e recupera seus dados
-            User user  = this.userService.findById(obj.getUser().getId())
+            User user  = this.userService.findById(obj.getUser().getId());
         
             //Define o ID como null para garantir que o JPA realize uma inserção(INSERT) e não uma atualização
             obj.setId(null);
@@ -85,7 +85,7 @@ public class TaskService {
         public Task update(Task obj){
         
         //Reaproveita o findByID para verificar se a tarefa a ser atualizada existe realmente
-        Task newObj = findById(obj.getId())
+        Task newObj = findById(obj.getId());
         
         newObj.setDescription(obj.getDescription());
 
@@ -96,13 +96,13 @@ public class TaskService {
 //Método para deletar uma tarefa pelo Id
 public void delete(long Id){
 //Verifica se a tarefa existe antes de tentar deletar
-findById(Id)
+findById(Id);
 try{
 //solicita a remoção da tarefa no banco de dados pelo ID
 this.taskRepository.deleteById(Id);
 } catch (Exception e){
     //Captura execcoes (como violações de chave estrangeira e lança uma mensagem amigavel)
-    throw new RuntimeException(message:"Não é possivel excluir pois não há tarefas relacionadas"
+    throw new RuntimeException("Não é possivel excluir pois não há tarefas relacionadas")
 
 }
 
