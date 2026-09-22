@@ -43,7 +43,7 @@ public class TaskService {
 
         // Se a tarefa existir, retorna o objeto, se estiver vazio, lança um RunTimeException
         return task.orElseThrow(()-> new RuntimeException(
-        "Tarefa não encontrada! id:"+ id + ",Tipo:" + Task.class.getName()
+        "Tarefa não encontrada! id:"+ Id + ",Tipo:" + Task.class.getName()
     ));
     }
 
@@ -92,7 +92,8 @@ public class TaskService {
         return this.taskRepository.save(newObj);
         }
 
-}
+
+
 //Método para deletar uma tarefa pelo Id
 public void delete(long Id){
 //Verifica se a tarefa existe antes de tentar deletar
@@ -102,7 +103,7 @@ try{
 this.taskRepository.deleteById(Id);
 } catch (Exception e){
     //Captura execcoes (como violações de chave estrangeira e lança uma mensagem amigavel)
-    throw new RuntimeException("Não é possivel excluir pois não há tarefas relacionadas")
+    throw new RuntimeException("Não é possivel excluir pois não há tarefas relacionadas");
 
 }
 

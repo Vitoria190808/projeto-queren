@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import api_teste.ds.models.Task;
+import api_teste.ds.models.User;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
@@ -17,6 +18,8 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     // O Spring gera o SQL automaticamente a partir do nome do método.
     // =========================================================================
     List<Task> findByUser_Id(Long id);
+
+    void saveAll(Class<? extends User> class1);
 
     /*
     // =========================================================================

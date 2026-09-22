@@ -40,7 +40,7 @@ public class UserService {
         Optional<User> user = this.userRepository.findById(Id);
 
         return user.orElseThrow(()-> new RuntimeException(
-            "Usuário não encontrado! Id: " + Id + ", Tipo: " + user.class.getName()
+            "Usuário não encontrado! Id: " + Id + ", Tipo: " + User.class.getName()
         ));
 
     }
@@ -66,9 +66,8 @@ public class UserService {
         newObj.setDescription(obj.getDescription());
 
         return this.taskRepository.save(newObj);
-
-    }
-
+     }
+     
     public void delete(Long Id){
 
         findById(Id);
@@ -80,4 +79,8 @@ public class UserService {
         } catch (Exception e) {
 
             throw new RuntimeException("Não é possível excluir pois não há entidades relacionadas");
+} 
+
+    }
 }
+    
